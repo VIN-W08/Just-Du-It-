@@ -33,7 +33,7 @@ class MyCartController extends Controller
         dd($items[0]->Shoe);
         // $shoes = Shoe::whereIn("shoeId",$items->shoeId)->get();
         // dd($items[0]->Shoe->name);
-        dd($items[0]->Shoe);
+        // dd($items[0]->Shoe);
         return view("my-layouts.cart",["items" => $items]);
     }
     
