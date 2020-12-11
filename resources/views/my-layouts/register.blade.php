@@ -2,7 +2,7 @@
 
 @section("title","register")
 
-@section("body")
+@section("content")
     <div class="register-container">
         <h4>Register</h4>
 

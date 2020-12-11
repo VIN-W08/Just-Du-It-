@@ -14,4 +14,5 @@
             <span>Rp. {{$shoe->price}}</span>
         </div>
     @endforeach
+    {{$shoes->withQueryString()->links()}}
 @endsection

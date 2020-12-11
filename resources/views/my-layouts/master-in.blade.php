@@ -6,7 +6,7 @@
     <title>@yield("title")</title>
 </head>
 <body>
-    <div class="header">
+    <div class="navbar">
         <img src="{{asset('images/Just Du It ! Logo.jpg')}}" alt="Just Du It Logo">
         <form class="search">
             <input type="text" name="search" value="{{Request::input('search')}}"> 
@@ -22,7 +22,7 @@
             @endauth
         </ul>
     </div>
-    <div class="body">
+    <div class="content">
         <ul>
             @auth
                 <li><a href="{{Route('home')}}">View All Shoe</a></li>

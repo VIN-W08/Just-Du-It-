@@ -10,7 +10,7 @@ class MyShoeController extends Controller
     function viewShoes(Request $request){
         
         $search = $request->input("search");
-        $shoes = Shoe::where("name","like","%$search%")->get();
+        $shoes = Shoe::where("name","like","%$search%")->paginate(6);
         //dd($shoes);
         return view("my-layouts.home",["shoes" => $shoes]);
     }

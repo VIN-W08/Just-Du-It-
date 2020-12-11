@@ -2,7 +2,7 @@
 
 @section("title","login")
 
-@section("body")
+@section("content")
     <div class="login-container">
         <h4>Login</h4>
         <form action="{{Route('login')}}" method="post">
