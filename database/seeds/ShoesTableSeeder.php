@@ -14,63 +14,63 @@ class ShoesTableSeeder extends Seeder
     {
         DB::table("shoes")->insert([
         [
-            "shoeId" => 1,
+            "id" => 1,
             "name" => "Air Jordan 1 Low",
             "description" => "Air Jordan 1 Low",
             "price" => 1429000,
             "image" => "Air Jordan 1 Low.jpg"
         ],
         [
-            "shoeId" => 2,
+            "id" => 2,
             "name" => "Air Jordan 1 Zoom Cmft",
             "description" => "Air Jordan 1 Zoom Cmft",
             "price" => 2099000,
             "image" => "Air Jordan 1 Zoom Cmft.jpg"
         ],
         [
-            "shoeId" => 3,
+            "id" => 3,
             "name" => "Jordan Zoom '92",
             "description" => "Jordan Zoom '92",
             "price" => 2279000,
             "image" => "Jordan Zoom '92.jpg"
         ],
         [
-            "shoeId" => 4,
+            "id" => 4,
             "name" => "Jordan Mars 270 Low",
             "description" => "Jordan Mars 270 Low",
             "price" => 2279000,
             "image" => "Jordan Mars 270 Low.jpg"
         ],
         [
-            "shoeId" => 5,
+            "id" => 5,
             "name" => "Jordan Air Zoom Renegade",
             "description" => "Jordan Air Zoom Renegade",
             "price" => 1979000,
             "image" => "Jordan Air Zoom Renegade.jpg"
         ],
         [
-            "shoeId" => 6,
+            "id" => 6,
             "name" => "Air Jordan 1 Low SE",
             "description" => "Air Jordan 1 Low SE",
             "price" =>  1649000,
             "image" => "Air Jordan 1 Low SE.jpg"
         ],
         [
-            "shoeId" => 7,
+            "id" => 7,
             "name" => "Jordan Air Cadence",
             "description" => "Jordan Air Cadence",
             "price" => 1649000,
             "image" => "Jordan Air Cadence.jpg"
         ],
         [
-            "shoeId" => 8,
+            "id" => 8,
             "name" => "Jordan Delta",
             "description" => "Jordan Delta",
             "price" => 1979000,
             "image" => "Jordan Delta.jpg"
         ],
         [
-            "shoeId" => 9,
+            "id" => 9,
             "name" => "Air Jordan OG",
             "description" => "Air Jordan OG",
             "price" => 2099000,

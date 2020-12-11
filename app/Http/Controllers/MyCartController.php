@@ -29,11 +29,12 @@ class MyCartController extends Controller
         // return view("my-layouts.cart",["carts" => $carts]);
         // return view("my-layouts.cart",["shoes" => $shoes]);
         $cart = Cart::where("memberId","=",$memberId)->first();
-        $items = CartItem::where("cartId","=",$cart->cartId)->get();
-        dd($items[0]->Shoe);
+        // dd($cart);
+        $items = CartItem::where("cartId","=",$cart->id)->get();
+        // dd($items[0]);
         // $shoes = Shoe::whereIn("shoeId",$items->shoeId)->get();
-        // dd($items[0]->Shoe->name);
-        // dd($items[0]->Shoe);
+        dd($items[0]->Shoe);
+        // dd($items[0]->shoes["name"]);
         return view("my-layouts.cart",["items" => $items]);
     }
     
@@ -45,10 +46,11 @@ class MyCartController extends Controller
         $cart = new Cart();
         $cart["memberId"] = $memberId;
         $cart->save();
-
+        
         $selected_cart = Cart::where("memberId","=",$memberId)->first();
+        // dd($selected_cart);
         $cartItem = new CartItem();
-        $cartItem["cartId"] = $selected_cart->cartId;
+        $cartItem["cartId"] = $selected_cart->id;
         $cartItem["shoeId"] = $shoeId;
         $cartItem["quantity"] = $quantity;
         $cartItem->save();

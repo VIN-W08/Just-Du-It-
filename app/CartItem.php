@@ -9,4 +9,8 @@ class CartItem extends Model
     public function Shoe(){
         return $this->belongsTo(Shoe::class);
     }
+
+    public function Cart(){
+        return $this->hasOne(Cart::class);
+    }
 }

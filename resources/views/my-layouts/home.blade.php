@@ -8,7 +8,7 @@
         <div class="card-container">
             <image src="{{asset('images/'.$shoe->image)}}" alt="{{$shoe->name}}">
             <form action="{{Route('detail')}}">
-                <input type="hidden" name="shoeId" value="{{$shoe->shoeId}}">
+                <input type="hidden" name="shoeId" value="{{$shoe->id}}">
                 <button type="submit">{{$shoe->name}}</button>
             </form>
             <span>Rp. {{$shoe->price}}</span>

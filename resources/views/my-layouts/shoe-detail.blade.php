@@ -13,7 +13,7 @@
     </div>
     @auth 
     <form action="{{Route('goToCart')}}">
-        <input type="hidden" name="shoeId" value="{{$shoe->shoeId}}">
+        <input type="hidden" name="shoeId" value="{{$shoe->id}}">
         <button type="submit">Add To Cart</button>
     </form>
     @endauth

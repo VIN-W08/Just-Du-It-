@@ -14,7 +14,7 @@ class CreateShoesTable extends Migration
     public function up()
     {
         Schema::create('shoes', function (Blueprint $table) {
-            $table->id("shoeId");
+            $table->id();
             $table->string("name");
             $table->string("description");
             $table->integer("price");
