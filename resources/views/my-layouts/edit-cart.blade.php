@@ -17,7 +17,7 @@
                 <input type="number" name="quantity" value="{{$item->quantity}}">
                 <button>Update Cart</button>
             </form>
-            <form action="{{Route('deleteCart')}}">
+            <form action="{{Route('deleteItem')}}">
                 <input type="hidden" name="itemId" value="{{$item->id}}">
                 <button>Delete</button>
             </form>

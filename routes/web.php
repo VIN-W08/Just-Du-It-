@@ -31,7 +31,8 @@ Route::post("/add-to-cart","MyCartController@addToCart")->name("addToCart");
 Route::get("/view-cart","MyCartController@viewCart")->name("viewCart");
 Route::get("/go-to-edit-cart","MyCartController@goToEditCart")->name("editCart");
 Route::get("/update-cart","MyCartController@updateCart")->name("updateCart");
-Route::get("/delete-cart","MyCartController@deleteCart")->name("deleteCart");
+Route::get("/delete-item","MyCartController@deleteItem")->name("deleteItem");
+Route::post("/check-out","MyCartController@checkOut")->name("checkOut");
 
 Route::get("/view-transaction","MyTransactionController@viewTransaction")->name("viewTransaction");
 

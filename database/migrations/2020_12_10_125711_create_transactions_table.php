@@ -16,11 +16,9 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("memberId");
-            $table->unsignedBigInteger("shoeId");
             $table->integer("totalPrice");
             $table->timestamps();
             $table->foreign("memberId")->references("id")->on("members")->onDelete("cascade");
-            $table->foreign("shoeId")->references("id")->on("shoes")->onDelete("cascade");
         });
     }
 

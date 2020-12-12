@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\CartItem;
+use App\Transaction;
+use App\TransactionItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,11 +13,14 @@ class MyCartController extends Controller
 {
     function viewCart(){
         $memberId = Auth::id();
-        $cart = Cart::find($memberId);
-
-        $items = CartItem::where("cartId","=",$cart->id)->get();
-
-        return view("my-layouts.cart",["items" => $items]);
+        $cart = Cart::where("memberId","=",$memberId)->first();
+        if($cart != null){
+            $items = CartItem::where("cartId","=",$cart->id)->get();
+        }
+        if($cart!=null && !$items->isEmpty()){
+            return view("my-layouts.cart",["items" => $items,"cartId"=>$cart->id]);
+        }
+        return view("my-layouts.cart");
     }
     
     function addToCart(Request $request){
@@ -23,14 +28,16 @@ class MyCartController extends Controller
         $shoeId = $request->input("shoeId");
         $quantity = $request->input("quantity");
 
-        $cart = new Cart();
-        $cart["memberId"] = $memberId;
-        $cart->save();
-        
-        $my_cart = Cart::find($memberId);
+        $cart = Cart::where("memberId","=",$memberId)->first();
+
+        if($cart == null){
+            $cart = new Cart();
+            $cart["memberId"] = $memberId;
+            $cart->save();
+        }
 
         $cartItem = new CartItem();
-        $cartItem["cartId"] = $my_cart->id;
+        $cartItem["cartId"] = $cart->id;
         $cartItem["shoeId"] = $shoeId;
         $cartItem["quantity"] = $quantity;
         $cartItem->save();
@@ -38,14 +45,14 @@ class MyCartController extends Controller
         return redirect("home");
     }
 
-    public function goToEditCart(Request $request){
+    function goToEditCart(Request $request){
         $itemId = $request->input("itemId");
         $item = CartItem::find($itemId);
 
         return view("my-layouts.edit-cart",["item"=>$item]);
     }
 
-    public function updateCart(Request $request){
+    function updateCart(Request $request){
         $itemId = $request->input("itemId");
         $qty = $request->input("quantity");
 
@@ -56,12 +63,39 @@ class MyCartController extends Controller
         return redirect("view-cart");
     }
 
-    public function deleteCart(Request $request){
+    function deleteItem(Request $request){
         $itemId = $request->input("itemId");
 
         $item = CartItem::find($itemId);
         $item->delete();
         
+        return redirect("view-cart");
+    }
+
+    function checkOut(Request $request){
+        $cartId = $request->input("cartId");
+        
+        $items = CartItem::where("cartId","=",$cartId)->get();
+
+        $totalPrice = 0;
+        $transaction = new Transaction();
+        $transaction["memberId"] = Auth::id();
+        $transaction["totalPrice"] = $totalPrice;
+        $transaction->save();
+
+        foreach($items as $item){
+            $transactionItem = new TransactionItem();
+            $transactionItem["transactionId"] = $transaction->id;
+            $transactionItem["shoeId"] = $item->Shoe->id;
+            $transactionItem->save();
+            $totalPrice = $totalPrice + ($item->Shoe->price * $item->quantity);
+        }
+
+        $transaction["totalPrice"] = $totalPrice;
+        $transaction->save();
+        
+        CartItem::where("cartId","=",$cartId)->delete();
+
         return redirect("view-cart");
     }
 }

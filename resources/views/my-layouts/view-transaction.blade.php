@@ -1,10 +1,10 @@
 @extends("my-layouts.master-in")
 
-@section("title","Cart")
+@section("title","Transaction")
 
 @section("page")
-    <h2>View Cart</h2>
-    <div class="cart-container">
+    <h2>View All Cart</h2>
+    <div class="transactions-container">
         @isset($items)
             @foreach($items as $item)
                 <div class="shoe-container">
