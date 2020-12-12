@@ -26,8 +26,8 @@
         <ul>
             @auth
                 <li><a href="{{Route('home')}}">View All Shoe</a></li>
-                <li><a href="{{Route('view-cart')}}">View Cart</a></li>
-                <li><a href="{{Route('view-transaction')}}">View Transaction</a></li>
+                <li><a href="{{Route('viewCart')}}">View Cart</a></li>
+                <li><a href="{{Route('viewTransaction')}}">View Transaction</a></li>
             @else
                 <li><a href="{{Route('home')}}">View All Shoe</a></li>
             @endauth

@@ -8,6 +8,6 @@ class Shoe extends Model
 {
     
     public function CartItem(){
-        return $this->hasOne(CartItem::class);
+        return $this->hasOne(CartItem::class,"id");
     }
 }

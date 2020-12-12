@@ -26,8 +26,13 @@ Route::post("/register","MyRegisterController@register")->name("register");
 Route::get("/home","MyShoeController@viewShoes")->name("home");
 Route::get("/detail","MyShoeController@showDetail")->name("detail");
 Route::get("/go-to-cart","MyShoeController@goToCart")->name("goToCart");
+
 Route::post("/add-to-cart","MyCartController@addToCart")->name("addToCart");
-Route::get("/view-cart","MyCartController@viewCart")->name("view-cart");
-Route::get("/view-transaction","MyTransactionController@viewTransaction")->name("view-transaction");
+Route::get("/view-cart","MyCartController@viewCart")->name("viewCart");
+Route::get("/go-to-edit-cart","MyCartController@goToEditCart")->name("editCart");
+Route::get("/update-cart","MyCartController@updateCart")->name("updateCart");
+Route::get("/delete-cart","MyCartController@deleteCart")->name("deleteCart");
+
+Route::get("/view-transaction","MyTransactionController@viewTransaction")->name("viewTransaction");
 
 Route::get("/logout","MyLoginController@logout")->name("logout");

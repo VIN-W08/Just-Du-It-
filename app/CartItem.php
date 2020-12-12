@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
     public function Shoe(){
-        return $this->belongsTo(Shoe::class);
+        return $this->belongsTo(Shoe::class,"shoeId");
     }
 
     public function Cart(){
-        return $this->hasOne(Cart::class);
+        return $this->hasOne(Cart::class,"cartId");
     }
 }

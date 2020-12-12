@@ -3,12 +3,18 @@
 @section("title","Cart")
 
 @section("page")
-    this is cart page
+    <h2>View Cart</h2>
     <div class="cart-container">
         @foreach($items as $item)
             <div class="shoe-container">
+                <img src="{{asset('images/'.$item->Shoe->image)}}" alt="{{$item->Shoe->name}}">
                 <span>{{$item->Shoe->name}}</span>
-                <button>Edit</button>
+                <span>{{$item->quantity}}</span>
+                <span>{{$item->Shoe->price}}</span>
+                <form action="{{Route('editCart')}}">
+                    <input type="hidden" name="itemId" value="{{$item->id}}"/>
+                    <button type="submit">Edit</button>
+                </form>
             </div>
         @endforeach
         @if(!empty($carts))
