@@ -23,7 +23,7 @@ class MyCartController extends Controller
         return view("my-layouts.cart");
     }
     
-    function addToCart(Request $request){
+    function createCartAndItem(Request $request){
         $memberId = Auth::id();
         $shoeId = $request->input("shoeId");
         $quantity = $request->input("quantity");
@@ -45,7 +45,7 @@ class MyCartController extends Controller
         return redirect("home");
     }
 
-    function goToEditCart(Request $request){
+    function editCart(Request $request){
         $itemId = $request->input("itemId");
         $item = CartItem::find($itemId);
 

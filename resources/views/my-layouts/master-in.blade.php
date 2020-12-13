@@ -6,7 +6,7 @@
     <title>@yield("title")</title>
 </head>
 <body>
-    <div class="navbar">
+    <div class="navbar"> 
         <img src="{{asset('images/Just Du It ! Logo.jpg')}}" alt="Just Du It Logo">
         <form class="search">
             <input type="text" name="search" value="{{Request::input('search')}}"> 
@@ -26,7 +26,11 @@
         <ul>
             @auth
                 <li><a href="{{Route('home')}}">View All Shoe</a></li>
-                <li><a href="{{Route('viewCart')}}">View Cart</a></li>
+                @if(auth()->user()->role == "member")
+                    <li><a href="{{Route('viewCart')}}">View Cart</a></li>
+                @else
+                    <li><a href="{{Route('addShoe')}}">Add Shoe</a></li>
+                @endif
                 <li><a href="{{Route('viewTransaction')}}">View Transaction</a></li>
             @else
                 <li><a href="{{Route('home')}}">View All Shoe</a></li>
@@ -35,6 +39,5 @@
         </ul>
         @yield("page")
     </div>
-    
 </body>
 </html>

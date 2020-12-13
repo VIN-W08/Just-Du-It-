@@ -18,6 +18,7 @@ class CreateMembersTable extends Migration
             $table->string("username");
             $table->string("email");
             $table->string("password");
+            $table->string("role");
             $table->rememberToken();
             $table->timestamps();
         });

@@ -10,7 +10,7 @@
         <span>Price : Rp {{$shoe->price}}</span>
         <span>Description :</span>
         <span>{{$shoe->description}}</span>
-        <form action="{{Route('addToCart')}}" method="post">
+        <form action="{{Route('createCartAndItem')}}" method="post">
             @csrf
             <input type="hidden" name="shoeId" value="{{$shoe->id}}">
             <label>Quantity</label>

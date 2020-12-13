@@ -28,7 +28,7 @@ class MyRegisterController extends Controller
         $member["username"] = $request["username"];
         $member["email"] = $request["email"];
         $member["password"] = Hash::make($request["password"]);
-        
+        $member["role"] = "member";
         $member->save();
 
         return redirect("login");
