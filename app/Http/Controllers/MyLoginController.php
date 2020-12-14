@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class MyLoginController extends Controller
 {
@@ -21,7 +22,18 @@ class MyLoginController extends Controller
     function login(Request $request){
         $this->validator($request);
         $credentials = $request->only(["email","password"]);
-        if(Auth::attempt($credentials,false)){
+        
+        $rememberTokenExpTime = 120;
+        $rememberTokenName = Auth::getRecallerName();
+        Cookie::queue($rememberTokenName, Cookie::get($rememberTokenName),$rememberTokenExpTime);
+        
+        if($request->input("remember_me") == true){
+            $remember = true;
+        }
+        else{
+            $remember = false;
+        }
+        if(Auth::attempt($credentials,$remember)){
             return redirect("home");
         }
         else{
