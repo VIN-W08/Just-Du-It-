@@ -14,7 +14,7 @@
         </form>
         <ul>
             @auth
-                <a href="">{{Auth::user()->username}}</a>
+                <a href="">{{auth()->user()->username}}</a>
                 <a href="{{Route('logout')}}">logout</a>
             @else
                 <li><a href="{{Route('login')}}">Login</a></li>

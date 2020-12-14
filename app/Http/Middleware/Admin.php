@@ -19,5 +19,8 @@ class Admin
         if(Auth::user()->role == "admin"){
             return $next($request);
         }
+        else{
+            return abort(403);
+        }
     }
 }

@@ -34,7 +34,7 @@ class MyShoeController extends Controller
         return view("my-layouts.add-shoe");
     }
 
-    function validator(Request $request){
+    function uploadShoeValidator(Request $request){
         $request->validate([
             "name" => "required",
             "description" => "required",
@@ -44,7 +44,7 @@ class MyShoeController extends Controller
     }
 
     function uploadShoe(Request $request){
-        $this->validator($request);
+        $this->uploadShoeValidator($request);
         
         $shoe = new Shoe();
         $shoe["name"] = $request["name"];
@@ -55,6 +55,42 @@ class MyShoeController extends Controller
         $request->file("image")->move(public_path("/images"),$request->file('image')->getClientOriginalName());
         $shoe->save();
         
-        return redirect("add-shoe");
+        return redirect()->back();
+    }
+
+    public function updateShoe(Request $request){
+        $shoeId = $request->input("shoeId");
+        $shoe = Shoe::find($shoeId);
+
+        return view("my-layouts.update-shoe",["shoe"=>$shoe]);
+    }
+
+    function updateShoeValidator(Request $request){
+        // dd($request);
+        $request->validate([
+            "name" => "required",
+            "description" => "required",
+            "price" => "required",
+        ]);
+    }
+
+    public function makeUpdateShoe(Request $request){
+        $this->updateShoeValidator($request);
+
+        $shoeId = $request->input("shoeId");
+        $shoe = Shoe::find($shoeId);
+        
+        $shoe->name = $request->input("name");
+        $shoe->price = $request->input("price");
+        $shoe->description = $request->input("description");
+
+        if($request->file("image") != null){
+            $shoe->image = $request->file("image")->getClientOriginalName();
+            $request->file("image")->move(public_path("/images"),$request->file('image')->getClientOriginalName());
+        }
+
+        $shoe->save();
+
+        return redirect()->back()->withInput();
     }
 }

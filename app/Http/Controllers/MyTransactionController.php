@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class MyTransactionController extends Controller
 {
     function viewTransaction(){
-        $transactions = Transaction::where("memberId","=",Auth::id())->get();
-
+        if(Auth::user()->role == "member"){
+            $transactions = Transaction::where("memberId","=",Auth::id())->get();
+        }
+        else{
+            $transactions = Transaction::all();
+        }
+        
         $transactionsId = array_map(function($transaction){
             return $transaction["id"];
         },$transactions->toArray());
